@@ -1,0 +1,8 @@
+README
+setup.py
+PirateBayBUA/__init__.py
+PirateBayBUA/categories.py
+PirateBayBUA/exceptions.py
+PirateBayBUA/page.py
+PirateBayBUA/parser.py
+PirateBayBUA/utils.py
