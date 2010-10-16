@@ -12,7 +12,10 @@ Piratebay-BUA, stand for ( Better User Agent )
   
   Missing features:
   ================
-    - easily download a torrent file.
+    - Acces to Meta-data, get environment Information.
+    - Downloading a Torrent will be available but restrictive reason will
+      be asked for monitoring pusposes. 
+        - ( and delivered to authority for evaluation purposes, or get the real piratebay, it's analysis tools here ) .
     - parse the torrent info page.
       - parse the comments.
       - the descriptions.
@@ -20,7 +23,8 @@ Piratebay-BUA, stand for ( Better User Agent )
       - Extracting information in quest of developping baysian rejection filter and 
        auto-analysis or even increasing amount of category, leaving real legality in
        pirate boxes...
-    - sphinx documentation.
+    - Object Analysis tools with pylibelf and PE under Windows Compatible.
+    - documentation will be clearer .
 
 Installing
 ==========
