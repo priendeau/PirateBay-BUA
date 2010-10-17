@@ -21,6 +21,15 @@ from PirateBuy import StructReference
 
 
 class GenericCacheCodecImplement( object ):
+
+  class NotImplementedYet( Warning ):
+    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s'
+    def __init__(self, value ):
+      Warning.__init__( self, self.Msg % ( value ) )
+      pass
+
+  __allPass__=[ ]
+
   DictReference = { 'log':'%sObjectCodeAnalysis-%s%s%s-%s%s%s-%s.log' }
   CachedInstance=None
   PathStoreLog=None
@@ -36,7 +45,7 @@ class GenericCacheCodecImplement( object ):
                            'list':[ 'windows','msvc' ] } }
   EnvType=None
 
-  class GenericCacheCodecFactory( object ):
+  class GenericCacheCodecFactory( GenericCacheCodecImplement ):
 
     def OpenCache( self ):
       """
@@ -55,6 +64,8 @@ class GenericCacheCodecImplement( object ):
       
 
   def StartLog( self ):
+    if not self.StartLog.__name__ in __allPass__:
+      raise self.NotImplementedYet, self.StartLog.__name__
     self.UUIDLogInstance=str(uuid4())
     
     ListMainLogFormat=( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5], self.UUIDLogInstance )
@@ -68,15 +79,79 @@ class GenericCacheCodecImplement( object ):
     self.CachedInstance=self.GenericCacheCodecFactory( )
     for ItemKey in Kargs.keys():
       setattr( self.file, ItemKey , Kargs[ItemKey] )
-
+    if not self.__init__.__name__ in __allPass__:
+      raise self.NotImplementedYet, self.__init__.__name__
 
 class ObjectCodeAnalysisImplement( object ):
-  ObjectCached = GenericCache()
+  ObjectCached = GenericCacheCodecImplement()
+  __allPass__={ 'ObjectCodeAnalysisImplement':[ ] ,
+                'ObjectCodeAnalysisFactory',
+                'AnalysisFactoryELF':[],
+                'AnalysisFactoryPE':[]}
+  
+  class NotImplementedYet( Warning ):
+    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
+    MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
+    def __init__(self, value ):
+      if len( value ) == 2:
+        self.FuncName, self.ClassName = value
+      if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
+        Warning.__init__( self, self.MsgClass % ( value ) )
+      else:
+        if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+          Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
+        else:
+          pass
 
-  class ObjectCodeAnalysisFactory( object ):
+  class ObjectCodeAnalysisFactory( ObjectCodeAnalysisImplement ):
+
+    class AnalysisFactoryELF( ObjectCodeAnalysisFactory ):
+
+      def A( self ):
+        raise self.NotImplementedYet, self.A.__name__, self.__class__.__name__
+          
+
+      def AA( self ):
+        raise self.NotImplementedYet, self.AA.__name__, self.__class__.__name__
+
+      def AB( self ):
+        raise self.NotImplementedYet, self.AB.__name__, self.__class__.__name__
+        
+      def B( self ):
+        raise self.NotImplementedYet, self.B.__name__, self.__class__.__name__
+
+      def BB( self ):
+        raise self.NotImplementedYet, self.BB.__name__, self.__class__.__name__
+
+      def BA( self ):
+        raise self.NotImplementedYet, self.BA.__name__, self.__class__.__name__
+      
 
 
-    class AnalysisFactoryELF( object ):
+    class AnalysisFactoryPE( ObjectCodeAnalysisFactory ):
+      def A( self ):
+        raise self.NotImplementedYet, self.A.__name__, self.__class__.__name__
 
+      def AA( self ):
+        raise self.NotImplementedYet, self.AA.__name__, self.__class__.__name__
 
-    class AnalysisFactoryPE( object )
+      def AB( self ):
+        raise self.NotImplementedYet, self.AB.__name__, self.__class__.__name__
+        
+      def B( self ):
+        raise self.NotImplementedYet, self.B.__name__, self.__class__.__name__
+
+      def BB( self ):
+        raise self.NotImplementedYet, self.BB.__name__, self.__class__.__name__
+
+      def BA( self ):
+        raise self.NotImplementedYet, self.BA.__name__, self.__class__.__name__
+      
+      
+  def __init__( self , **Kargs ):
+    raise self.NotImplementedYet, self.__init__.__name__
+    self.CachedInstance=self.GenericCacheCodecFactory( )
+    for ItemKey in Kargs.keys():
+      setattr( self.file, ItemKey , Kargs[ItemKey] )
+      
+    
