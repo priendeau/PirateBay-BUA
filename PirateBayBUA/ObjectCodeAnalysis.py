@@ -57,14 +57,16 @@ class GenericCacheCodecImplement( object ):
   EnvType=None
 
   class GenericCacheCodecFactory( GenericCacheCodecImplement ):
-
+    DefaultNotImplemented=GenericCacheCodecImplement().NotImplementedYet
     def OpenCache( self ):
+      raise self.DefaultNotImplemented, self.OpenCache.__name__, self.__class__.__name__
       """
         OpenCache Proc
       """
       print "Function %s" % ( self.OpenCache.__name__ )
 
   def GetPathTopologyKey( self , DefaultKey = 'uniformPath' ):
+    raise self.DefaultNotImplemented, self.GetPathTopologyKey.__name__, self.__class__.__name__
     if self.EnvType == None:
       self.PathStoreLogThisNode=self.FileNode[DefaultKey]['thisnode']
     else:
@@ -75,18 +77,17 @@ class GenericCacheCodecImplement( object ):
       
 
   def StartLog( self ):
+    raise self.DefaultNotImplemented, self.StartLog.__name__, self.__class__.__name__
     if not self.StartLog.__name__ in __allPass__:
       raise self.NotImplementedYet, self.StartLog.__name__
     self.UUIDLogInstance=str(uuid4())
     
     ListMainLogFormat=( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5], self.UUIDLogInstance )
     if self.PathStoreLog == None:
-
-        
-      
       logging.basicConfig(filename=DictReference['log']( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5],str(uuid4())),level=logging.DEBUG)
 
   def __init__( self, **Kargs ):
+    raise self.DefaultNotImplemented, self.__init__.__name__, self.__class__.__name__
     self.CachedInstance=self.GenericCacheCodecFactory( )
     for ItemKey in Kargs.keys():
       setattr( self.file, ItemKey , Kargs[ItemKey] )
@@ -96,7 +97,7 @@ class GenericCacheCodecImplement( object ):
 class ObjectCodeAnalysisImplement( object ):
   ObjectCached = GenericCacheCodecImplement()
   __allPass__={ 'ObjectCodeAnalysisImplement':[ ] ,
-                'ObjectCodeAnalysisFactory',
+                'ObjectCodeAnalysisFactory':[],
                 'AnalysisFactoryELF':[],
                 'AnalysisFactoryPE':[]}
   
@@ -117,46 +118,46 @@ class ObjectCodeAnalysisImplement( object ):
   class ObjectCodeAnalysisFactory( ObjectCodeAnalysisImplement ):
 
     class AnalysisFactoryELF( ObjectCodeAnalysisFactory ):
-
+      DefaultNotImplemented=ObjectCodeAnalysisImplement().NotImplementedYet
       def A( self ):
-        raise self.NotImplementedYet, self.A.__name__, self.__class__.__name__
-          
+        raise self.DefaultNotImplemented, self.A.__name__, self.__class__.__name__
 
       def AA( self ):
-        raise self.NotImplementedYet, self.AA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.AA.__name__, self.__class__.__name__
 
       def AB( self ):
-        raise self.NotImplementedYet, self.AB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.AB.__name__, self.__class__.__name__
         
       def B( self ):
-        raise self.NotImplementedYet, self.B.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.B.__name__, self.__class__.__name__
 
       def BB( self ):
-        raise self.NotImplementedYet, self.BB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.BB.__name__, self.__class__.__name__
 
       def BA( self ):
-        raise self.NotImplementedYet, self.BA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.BA.__name__, self.__class__.__name__
       
 
 
     class AnalysisFactoryPE( ObjectCodeAnalysisFactory ):
+      DefaultNotImplemented=ObjectCodeAnalysisImplement().NotImplementedYet
       def A( self ):
-        raise self.NotImplementedYet, self.A.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.A.__name__, self.__class__.__name__
 
       def AA( self ):
-        raise self.NotImplementedYet, self.AA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.AA.__name__, self.__class__.__name__
 
       def AB( self ):
-        raise self.NotImplementedYet, self.AB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.AB.__name__, self.__class__.__name__
         
       def B( self ):
-        raise self.NotImplementedYet, self.B.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.B.__name__, self.__class__.__name__
 
       def BB( self ):
-        raise self.NotImplementedYet, self.BB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.BB.__name__, self.__class__.__name__
 
       def BA( self ):
-        raise self.NotImplementedYet, self.BA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, self.BA.__name__, self.__class__.__name__
       
       
   def __init__( self , **Kargs ):
