@@ -16,6 +16,7 @@ import datetime, time
 import logging
 import uuid
 from uuid import uuid4
+from PirateBuy import StructReference
 
 
 
@@ -41,25 +42,25 @@ class GenericCacheCodecImplement( object ):
       """
         OpenCache Proc
       """
-      print "Func"
+      print "Function %s" % ( self.OpenCache.__name__ )
 
   def GetPathTopologyKey( self , DefaultKey = 'uniformPath' ):
     if self.EnvType == None:
       self.PathStoreLogThisNode=self.FileNode[DefaultKey]['thisnode']
     else:
       for ItemKey in self.FileNode.keys():
-        for ItemOs in self.FileNode[ItemKey][''].keys()
+        if self.EnvType in self.FileNode[ItemKey]['list']:
+          self.PathStoreLogThisNode=self.FileNode[ItemKey]['thisnode'] 
+          
       
 
   def StartLog( self ):
     self.UUIDLogInstance=str(uuid4())
     
-    ListMainLogFormat=( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5], self.UUIDLogInstance ]
+    ListMainLogFormat=( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5], self.UUIDLogInstance )
     if self.PathStoreLog == None:
-      if self.EnvType == None:
-        ListMainLogFormat.insert( 0, './' )
-      else:
-        for ItemKey in 
+
+        
       
       logging.basicConfig(filename=DictReference['log']( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5],str(uuid4())),level=logging.DEBUG)
 
