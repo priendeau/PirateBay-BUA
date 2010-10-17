@@ -1,7 +1,22 @@
 from struct import *
 
 class StructReference( object ):
+    __allPass__={ 'StructReference':[] }
 
+    class NotImplementedYet( Warning ):
+        Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
+        MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
+        def __init__(self, value ):
+            if len( value ) == 2:
+                self.FuncName, self.ClassName = value
+            if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
+                Warning.__init__( self, self.MsgClass % ( value ) )
+            else:
+                if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+                    Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
+                else:
+                  pass
+    
     DictKeyDictReference=['symbol','type','size']
     DictAttrFromModule=['pack','unpack','calcsize']
     TypeAssociation={
@@ -56,18 +71,22 @@ class StructReference( object ):
 
     DefaultStructAttrType=None
     def GetStructAttrType( self ):
+        raise self.NotImplementedYet, self.GetStructAttrType.__name__, self.__class__.__name__
       return self.TypeAssociation[ self.DefaultStructReprName ][ DefaultKey ]
     
     def SetStructAttrType( self, value ):
+        raise self.NotImplementedYet, self.SetStructAttrType.__name__, self.__class__.__name__
       self.
 
     PropertyStructAttrType=property( GetStructAttrType, SetStructAttrType )
 
     DefaultStructSymbol=None
     def GetStructSymbol( self ):
+        raise self.NotImplementedYet, self.GetStructSymbol.__name__, self.__class__.__name__
       return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructSymbol ]
 
     def SetStructSymbol( self, value ):
+        raise self.NotImplementedYet, self.SetStructSymbol.__name__, self.__class__.__name__
       self.
 
     PropertyStructSymbol=property( GetStructSymbol, SetStructSymbol )
@@ -76,9 +95,11 @@ class StructReference( object ):
     DefaultStructReprSize=None
 
     def GetStructSize( self ):
+        raise self.NotImplementedYet, self.GetStructSize.__name__, self.__class__.__name__
       return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructReprSize ]
 
     def SetStructSize( self, value ):
+        raise self.NotImplementedYet, self.SetStructSize.__name__, self.__class__.__name__
       self.DefaultStructReprSize = value
 
     PropertyStructSize=property( GetStructSize, SetStructSize )
@@ -86,9 +107,11 @@ class StructReference( object ):
     DefaultStructReprName=None
 
     def GetStructName( self ):
+        raise self.NotImplementedYet, self.GetStructName.__name__, self.__class__.__name__
       return self.DefaultStructReprName
     
     def SetStructName( self, value ):
+        raise self.NotImplementedYet, self.SetStructName.__name__, self.__class__.__name__
         self.DefaultStructReprName = value
         valueKeysymbol, valueKeyType, valueKeysize = self.DictKeyDictReference
         self.PropertyStructSymbol=valueKeysymbol
@@ -102,9 +125,10 @@ class StructReference( object ):
     DefaultStructIdName=None
     
     def GetStruct( self ):
-          
+        raise self.NotImplementedYet, self.GetStruct.__name__, self.__class__.__name__          
     
     def SetStruct( self, value ):
+        raise self.NotImplementedYet, self.SetStruct.__name__, self.__class__.__name__
         valueKeyName = value 
         
         

@@ -4,8 +4,8 @@
 
 __author__ = 'P.Riendeau: Maxiste Deams <maxistedeams@gmail.com>, Rheault.Etccy <rheault.etccy@gmail.com>'
 __status__ = 'alpha'
-__version__ = '0.0.1-apha-netcy'
-
+__version__ = '0.0.1r002-apha-netcy'
+__all__=['exceptions','categories','exceptions','ObjectCodeAnalysis', '__init__']
 __title__ = 'PirateBay-BUA'
 __copyright__ = 'Copyright (c) Alexander Borgerth 2010, Copyright (c) 2005-2010 re-edited by Maxiste Deams, Patrick Riendeau, Rheault Etccy for Upcoming Security audit in Canada. See LICENSE for details.'
 __website__ = 'git://github.com/priendeau/PirateBay-BUA.git'
