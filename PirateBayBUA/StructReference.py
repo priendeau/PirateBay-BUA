@@ -4,18 +4,25 @@ class StructReference( object ):
     __allPass__={ 'StructReference':[] }
 
     class NotImplementedYet( Warning ):
+        class AbsentClassDeclException( Exception ) :
+            Msg='AbsentClassDeclException arbritrary raised for fault in ClassName variable not reported by NotImplementedYet'
+            def __init__(self, value ):
+                Exception.__init__( self, self.MsgClass % ( value ) )
         Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
         MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
         def __init__(self, value ):
             if len( value ) == 2:
                 self.FuncName, self.ClassName = value
-            if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
-                Warning.__init__( self, self.MsgClass % ( value ) )
+            elif len( value ) == 2:
+                self.FuncName = value
+                self.ClassName = None
+        if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
+            Warning.__init__( self, self.MsgClass % ( value ) )
+        else:
+            if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+                Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
             else:
-                if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
-                    Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
-                else:
-                  pass
+                pass
     
     DictKeyDictReference=['symbol','type','size']
     DictAttrFromModule=['pack','unpack','calcsize']
@@ -72,31 +79,30 @@ class StructReference( object ):
     DefaultStructAttrType=None
     def GetStructAttrType( self ):
         raise self.NotImplementedYet, self.GetStructAttrType.__name__, self.__class__.__name__
-      return self.TypeAssociation[ self.DefaultStructReprName ][ DefaultKey ]
+        return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructAttrType ]
     
     def SetStructAttrType( self, value ):
         raise self.NotImplementedYet, self.SetStructAttrType.__name__, self.__class__.__name__
-      self.
+        self.DefaultStructAttrType = value
 
     PropertyStructAttrType=property( GetStructAttrType, SetStructAttrType )
 
     DefaultStructSymbol=None
     def GetStructSymbol( self ):
         raise self.NotImplementedYet, self.GetStructSymbol.__name__, self.__class__.__name__
-      return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructSymbol ]
+        return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructSymbol ]
 
     def SetStructSymbol( self, value ):
         raise self.NotImplementedYet, self.SetStructSymbol.__name__, self.__class__.__name__
-      self.
+        self.DefaultStructSymbol = value
 
     PropertyStructSymbol=property( GetStructSymbol, SetStructSymbol )
 
 
     DefaultStructReprSize=None
-
     def GetStructSize( self ):
         raise self.NotImplementedYet, self.GetStructSize.__name__, self.__class__.__name__
-      return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructReprSize ]
+        return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructReprSize ]
 
     def SetStructSize( self, value ):
         raise self.NotImplementedYet, self.SetStructSize.__name__, self.__class__.__name__
@@ -118,11 +124,10 @@ class StructReference( object ):
         self.PropertyStructAttrType=valueKeyType
         self.PropertyStructSize=valueKeysize
         
-        
 
     PropertyStructName=property( GetStructName, SetStructName )
 
-    DefaultStructIdName=None
+    DefaultStructId=None
     
     def GetStruct( self ):
         raise self.NotImplementedYet, self.GetStruct.__name__, self.__class__.__name__          
@@ -130,9 +135,6 @@ class StructReference( object ):
     def SetStruct( self, value ):
         raise self.NotImplementedYet, self.SetStruct.__name__, self.__class__.__name__
         valueKeyName = value 
-        
-        
-        
       
     PropertyStruct=property( GetStruct, SetStruct )
 
