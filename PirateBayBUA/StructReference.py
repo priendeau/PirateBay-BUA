@@ -23,7 +23,15 @@ class StructReference( object ):
                 Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
             else:
                 pass
-    
+
+    class InvalidStructureAttributeException( Exception ):
+        Msg='InvalidStructureAttributeException raised , invalid Attribute %s'
+        def __init__(self, value ):
+            if value not in StructReference.DictKeyDictReference:
+                Exception.__init__( self, self.Msg % ( value ) )
+            else:
+                pass
+            
     DictKeyDictReference=['symbol','type','size']
     DictAttrFromModule=['pack','unpack','calcsize']
     TypeAssociation={
@@ -106,7 +114,7 @@ class StructReference( object ):
 
     def SetStructSize( self, value ):
         raise self.NotImplementedYet, self.SetStructSize.__name__, self.__class__.__name__
-      self.DefaultStructReprSize = value
+        self.DefaultStructReprSize = value
 
     PropertyStructSize=property( GetStructSize, SetStructSize )
 
@@ -114,7 +122,7 @@ class StructReference( object ):
 
     def GetStructName( self ):
         raise self.NotImplementedYet, self.GetStructName.__name__, self.__class__.__name__
-      return self.DefaultStructReprName
+        return self.DefaultStructReprName
     
     def SetStructName( self, value ):
         raise self.NotImplementedYet, self.SetStructName.__name__, self.__class__.__name__
@@ -130,11 +138,13 @@ class StructReference( object ):
     DefaultStructId=None
     
     def GetStruct( self ):
-        raise self.NotImplementedYet, self.GetStruct.__name__, self.__class__.__name__          
+        raise self.NotImplementedYet, self.GetStruct.__name__, self.__class__.__name__
     
     def SetStruct( self, value ):
         raise self.NotImplementedYet, self.SetStruct.__name__, self.__class__.__name__
-        valueKeyName = value 
+        valueKeyAttr, valueAttrName = value
+        raise self.InvalidStructureAttributeException, valueKeyAttr
+        self.PropertyStructName=valueAttrName
       
     PropertyStruct=property( GetStruct, SetStruct )
 
