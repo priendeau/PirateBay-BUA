@@ -20,13 +20,24 @@ from PirateBuy import StructReference
 
 
 
-class GenericCacheCodecImplement( object ):
 
+class GenericCacheCodecImplement( object ):
+  __allPass__={ 'GenericCacheCodecImplement':[],
+                'GenericCacheCodecFactory':[] }
+  
   class NotImplementedYet( Warning ):
-    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s'
+    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
+    MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
     def __init__(self, value ):
-      Warning.__init__( self, self.Msg % ( value ) )
-      pass
+      if len( value ) == 2:
+        self.FuncName, self.ClassName = value
+      if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
+        Warning.__init__( self, self.MsgClass % ( value ) )
+      else:
+        if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+          Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
+        else:
+          pass
 
   __allPass__=[ ]
 
