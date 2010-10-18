@@ -12,34 +12,42 @@ import uuid, datetime, time, logging, GenericCache, pylibelf
 from GenericCache.GenericCache import GenericCache
 from GenericCache.decorators import cached
 from uuid import uuid4
-from PirateBayBUA import decorator
-from decorator import BytePlayEncoder
-from PirateBUA import StructReference
+from decorator import *
+#from PirateBayBUA import StructReference
+import StructReference
 
+class NotImplementedYet( Warning ):
+  Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
+  MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
+  FuncName, ClassName, ObjectNotYetList = None, None, None
 
-
-
-class GenericCacheCodecImplement( object ):
-  CodeBytePlay = dict()
-  __allPass__={ 'GenericCacheCodecImplement':[],
-                'GenericCacheCodecFactory':[] }
-  
-  class NotImplementedYet( Warning ):
-    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
-    MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
+  class ValueTransfertException( Exception ):
+    Msg='ValueTransfertException raised , invalid number of Key transferred, lower than %d.'
+    IntMinArgAgree=3
+    IntScanValue=None
     def __init__(self, value ):
-      if len( value ) == 2:
-        self.FuncName, self.ClassName = value
-      if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
-        Warning.__init__( self, self.MsgClass % ( value ) )
+      self.IntScanValue=len(value)
+      if self.IntScanValue < self.IntMinArgAgree:
+        Exception.__init__( self, self.Msg % ( self.IntMinArgAgree ) )
       else:
-        if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+        pass
+  
+  def __init__( self, value ):
+    raise NotImplementedYet.ValueTransfertException, value
+    self.FuncName, self.ClassName, self.ObjectNotYetList = value
+    if not self.ClassName in self.ObjectNotYetList.keys():
+        Warning.__init__( self, self.MsgClass % ( value ) )
+    else:
+        if not self.FuncName in self.ObjectAllPass[self.ClassName]:
           Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
         else:
           pass
 
-  __allPass__=[ ]
-
+class GenericCacheCodecImplement(  ):
+  CodeBytePlay = dict()
+  __allPass__={ 'GenericCacheCodecImplement':[],
+                'GenericCacheCodecFactory':[] }
+  
   DictReference = { 'log':'%sObjectCodeAnalysis-%s%s%s-%s%s%s-%s.log' }
   CachedInstance=None
   PathStoreLog=None
@@ -55,20 +63,22 @@ class GenericCacheCodecImplement( object ):
                            'list':[ 'windows','msvc' ] } }
   EnvType=None
 
-  class GenericCacheCodecFactory( GenericCacheCodecImplement ):
-    DefaultNotImplemented=GenericCacheCodecImplement().NotImplementedYet
+  class GenericCacheCodecFactory( object ):
+    CodeBytePlay = dict()
+    #DefaultNotImplemented=GenericCacheCodecImplement.NotImplementedYet
+    #DefaultNotImplemented=GenericCacheCodecImplement.NotImplementedYet
 
-    @BytePlayEncoder( GenericCacheCodecImplement.CodeBytePlay, 'GenericCacheCodecFactory' )
+    @BytePlayEncoder( CodeBytePlay, 'GenericCacheCodecFactory' )
     def OpenCache( self ):
-      raise self.DefaultNotImplemented, self.OpenCache.__name__, self.__class__.__name__
+      raise NotImplementedYet, [ self.OpenCache.__name__, self.__class__.__name__ , self.__allPass__ ]
       """
         OpenCache Proc
       """
       print "Function %s" % ( self.OpenCache.__name__ )
 
-  @BytePlayEncoder( GenericCacheCodecImplement.CodeBytePlay, 'GenericCacheCodecImplement' )
+  @BytePlayEncoder( CodeBytePlay, 'GenericCacheCodecImplement' )
   def GetPathTopologyKey( self , DefaultKey = 'uniformPath' ):
-    raise self.DefaultNotImplemented, self.GetPathTopologyKey.__name__, self.__class__.__name__
+    raise NotImplementedYet, [self.GetPathTopologyKey.__name__, self.__class__.__name__, self.__allPass__]
     if self.EnvType == None:
       self.PathStoreLogThisNode=self.FileNode[DefaultKey]['thisnode']
     else:
@@ -77,9 +87,9 @@ class GenericCacheCodecImplement( object ):
           self.PathStoreLogThisNode=self.FileNode[ItemKey]['thisnode'] 
           
       
-  @BytePlayEncoder( GenericCacheCodecImplement.CodeBytePlay, 'GenericCacheCodecImplement' )
+  @BytePlayEncoder( CodeBytePlay, 'GenericCacheCodecImplement' )
   def StartLog( self ):
-    raise self.DefaultNotImplemented, self.StartLog.__name__, self.__class__.__name__
+    raise NotImplementedYet, [self.StartLog.__name__, self.__class__.__name__, self.__allPass__]
     if not self.StartLog.__name__ in __allPass__:
       raise self.NotImplementedYet, self.StartLog.__name__
     self.UUIDLogInstance=str(uuid4())
@@ -88,9 +98,9 @@ class GenericCacheCodecImplement( object ):
     if self.PathStoreLog == None:
       logging.basicConfig(filename=DictReference['log']( Atime[0],Atime[1],Atime[2],Atime[3],Atime[4],Atime[5],str(uuid4())),level=logging.DEBUG)
 
-  @BytePlayEncoder( GenericCacheCodecImplement.CodeBytePlay, 'GenericCacheCodecImplement' )
+  @BytePlayEncoder( CodeBytePlay, 'GenericCacheCodecImplement' )
   def __init__( self, **Kargs ):
-    raise self.DefaultNotImplemented, self.__init__.__name__, self.__class__.__name__
+    raise NotImplementedYet, [ self.__init__.__name__, self.__class__.__name__ ,self.__allPass__]
     self.CachedInstance=self.GenericCacheCodecFactory( )
     for ItemKey in Kargs.keys():
       setattr( self.file, ItemKey , Kargs[ItemKey] )
@@ -105,80 +115,69 @@ class ObjectCodeAnalysisImplement( object ):
                 'AnalysisFactoryELF':[],
                 'AnalysisFactoryPE':[]}
   
-  class NotImplementedYet( Warning ):
-    Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
-    MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
-    def __init__(self, value ):
-      if len( value ) == 2:
-        self.FuncName, self.ClassName = value
-      if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
-        Warning.__init__( self, self.MsgClass % ( value ) )
-      else:
-        if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
-          Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
-        else:
-          pass
-
   class ObjectCodeAnalysisFactory( ObjectCodeAnalysisImplement ):
-
+    CodeBytePlay = dict()
+    
     class AnalysisFactoryELF( ObjectCodeAnalysisFactory ):
+      CodeBytePlay = dict()
 
       DefaultNotImplemented=ObjectCodeAnalysisImplement().NotImplementedYet
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def A( self ):
-        raise self.DefaultNotImplemented, self.A.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [self.A.__name__, self.__class__.__name__,self.__allPass__]
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def AA( self ):
-        raise self.DefaultNotImplemented, self.AA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [self.AA.__name__, self.__class__.__name__,self.__allPass__]
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def AB( self ):
-        raise self.DefaultNotImplemented, self.AB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [self.AB.__name__, self.__class__.__name__,self.__allPass__]
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def B( self ):
-        raise self.DefaultNotImplemented, self.B.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [self.B.__name__, self.__class__.__name__,self.__allPass__]
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def BB( self ):
-        raise self.DefaultNotImplemented, self.BB.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [ self.BB.__name__, self.__class__.__name__,self.__allPass__ ]
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryELF' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryELF' )
       def BA( self ):
-        raise self.DefaultNotImplemented, self.BA.__name__, self.__class__.__name__
+        raise self.DefaultNotImplemented, [self.BA.__name__, self.__class__.__name__,self.__allPass__]
       
 
 
     class AnalysisFactoryPE( ObjectCodeAnalysisFactory ):
+      CodeBytePlay = dict()
       DefaultNotImplemented=ObjectCodeAnalysisImplement().NotImplementedYet
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def A( self ):
         raise self.DefaultNotImplemented, self.A.__name__, self.__class__.__name__
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def AA( self ):
         raise self.DefaultNotImplemented, self.AA.__name__, self.__class__.__name__
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def AB( self ):
         raise self.DefaultNotImplemented, self.AB.__name__, self.__class__.__name__
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def B( self ):
         raise self.DefaultNotImplemented, self.B.__name__, self.__class__.__name__
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def BB( self ):
         raise self.DefaultNotImplemented, self.BB.__name__, self.__class__.__name__
 
-      @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'AnalysisFactoryPE' )
+      @BytePlayEncoder( CodeBytePlay, 'AnalysisFactoryPE' )
       def BA( self ):
         raise self.DefaultNotImplemented, self.BA.__name__, self.__class__.__name__
       
-  @BytePlayEncoder( ObjectCodeAnalysisImplement.CodeBytePlay, 'ObjectCodeAnalysisFactory' )
+  @BytePlayEncoder( CodeBytePlay, 'ObjectCodeAnalysisFactory' )
   def __init__( self , **Kargs ):
     raise self.NotImplementedYet, self.__init__.__name__
     self.CachedInstance=self.GenericCacheCodecFactory( )
