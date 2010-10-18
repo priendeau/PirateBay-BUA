@@ -10,19 +10,20 @@ class StructReference( object ):
                 Exception.__init__( self, self.MsgClass % ( value ) )
         Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
         MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
+        FuncName=None
+        ClassName=None
         def __init__(self, value ):
             if len( value ) == 2:
                 self.FuncName, self.ClassName = value
             elif len( value ) == 2:
                 self.FuncName = value
-                self.ClassName = None
-        if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
-            Warning.__init__( self, self.MsgClass % ( value ) )
-        else:
-            if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
-                Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
+            if not self.ClassName in ObjectCodeAnalysisImplement.__allPass__.keys():
+                Warning.__init__( self, self.MsgClass % ( value ) )
             else:
-                pass
+                if not self.FuncName in ObjectCodeAnalysisImplement[self.ClassName]:
+                    Warning.__init__( self, self.Msg % ( self.FuncName, self.ClassName ) )
+                else:
+                    pass
 
     class InvalidStructureAttributeException( Exception ):
         Msg='InvalidStructureAttributeException raised , invalid Attribute %s'
