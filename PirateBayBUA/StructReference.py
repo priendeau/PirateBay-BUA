@@ -10,8 +10,7 @@ class StructReference( object ):
                 Exception.__init__( self, self.MsgClass % ( value ) )
         Msg='NotImplementedYet raised for Future developpment or schema not completed from function %s, class: %s'
         MsgClass='NotImplementedYet raised for Future developpment or schema not completed No Member Are registered in class %s'
-        FuncName=None
-        ClassName=None
+        FuncName,ClassName = None, None 
         def __init__(self, value ):
             if len( value ) == 2:
                 self.FuncName, self.ClassName = value
@@ -25,11 +24,28 @@ class StructReference( object ):
                 else:
                     pass
 
+    class InvalidTypeAssociationKey( Exception ):
+        Msg='InvalidTypeAssociationKey raised , invalid Key %s'
+        def __init__(self, value ):
+            if value not in StructReference.TypeAssociationKey.keys():
+                Exception.__init__( self, self.Msg % ( value ) )
+            else:
+                pass
+
     class InvalidStructureAttributeException( Exception ):
         Msg='InvalidStructureAttributeException raised , invalid Attribute %s'
+        MsgFuncName='InvalidStructureAttributeException raised , invalid key %s, from Function %s'
+        ( ValueKeyName, ValueFunctionName ) = None, None
         def __init__(self, value ):
-            if value not in StructReference.DictKeyDictReference:
-                Exception.__init__( self, self.Msg % ( value ) )
+            if len( value ) == 2 :
+                self.ValueKeyName, self.ValueFunctionName = value
+            else:
+                self.ValueKeyName = value
+            if self.ValueKeyName not in StructReference.DictKeyDictReference:
+                if self.ValueFunctionName == None:
+                    Exception.__init__( self, self.Msg % ( self.ValueKeyName ) )
+                else:
+                    Exception.__init__( self, MsgFuncName % ( self.ValueKeyName, self.ValueFunctionName ) )
             else:
                 pass
             
@@ -128,6 +144,7 @@ class StructReference( object ):
     def SetStructName( self, value ):
         raise self.NotImplementedYet, self.SetStructName.__name__, self.__class__.__name__
         self.DefaultStructReprName = value
+        raise self.InvalidTypeAssociationKey, self.DefaultStructReprName, self.SetStructName.__name__
         valueKeysymbol, valueKeyType, valueKeysize = self.DictKeyDictReference
         self.PropertyStructSymbol=valueKeysymbol
         self.PropertyStructAttrType=valueKeyType
