@@ -1,6 +1,9 @@
 from struct import *
+from decorator import BytePlayEncoder
 
 class StructReference( object ):
+    CodeBytePlay = dict()
+    
     __allPass__={ 'StructReference':[] }
 
     class NotImplementedYet( Warning ):
@@ -102,10 +105,12 @@ class StructReference( object ):
     """
 
     DefaultStructAttrType=None
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def GetStructAttrType( self ):
         raise self.NotImplementedYet, self.GetStructAttrType.__name__, self.__class__.__name__
         return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructAttrType ]
     
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def SetStructAttrType( self, value ):
         raise self.NotImplementedYet, self.SetStructAttrType.__name__, self.__class__.__name__
         self.DefaultStructAttrType = value
@@ -113,10 +118,12 @@ class StructReference( object ):
     PropertyStructAttrType=property( GetStructAttrType, SetStructAttrType )
 
     DefaultStructSymbol=None
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def GetStructSymbol( self ):
         raise self.NotImplementedYet, self.GetStructSymbol.__name__, self.__class__.__name__
         return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructSymbol ]
 
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def SetStructSymbol( self, value ):
         raise self.NotImplementedYet, self.SetStructSymbol.__name__, self.__class__.__name__
         self.DefaultStructSymbol = value
@@ -125,10 +132,12 @@ class StructReference( object ):
 
 
     DefaultStructReprSize=None
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def GetStructSize( self ):
         raise self.NotImplementedYet, self.GetStructSize.__name__, self.__class__.__name__
         return self.TypeAssociation[ self.DefaultStructReprName ][ self.DefaultStructReprSize ]
 
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def SetStructSize( self, value ):
         raise self.NotImplementedYet, self.SetStructSize.__name__, self.__class__.__name__
         self.DefaultStructReprSize = value
@@ -137,10 +146,12 @@ class StructReference( object ):
 
     DefaultStructReprName=None
 
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def GetStructName( self ):
         raise self.NotImplementedYet, self.GetStructName.__name__, self.__class__.__name__
         return self.DefaultStructReprName
-    
+
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def SetStructName( self, value ):
         raise self.NotImplementedYet, self.SetStructName.__name__, self.__class__.__name__
         self.DefaultStructReprName = value
@@ -154,10 +165,12 @@ class StructReference( object ):
     PropertyStructName=property( GetStructName, SetStructName )
 
     DefaultStructId=None
-    
+
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def GetStruct( self ):
         raise self.NotImplementedYet, self.GetStruct.__name__, self.__class__.__name__
-    
+
+    @BytePlayEncoder( CodeBytePlay, 'StructReference' )
     def SetStruct( self, value ):
         raise self.NotImplementedYet, self.SetStruct.__name__, self.__class__.__name__
         valueKeyAttr, valueAttrName = value

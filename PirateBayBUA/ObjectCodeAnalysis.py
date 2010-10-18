@@ -15,7 +15,7 @@ from uuid import uuid4
 from PirateBayBUA import decorator
 from decorator import BytePlayEncoder
 from PirateBUA import StructReference
-from byteplay import *
+
 
 
 
