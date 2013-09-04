@@ -4,7 +4,7 @@
 
 
 from urlparse import urljoin
-from PirateBayBUA import exceptions
+from piratebaybua import exceptions
 
 _xpath_table = ".//div[@id='content']/div[@id='main-content']/table[@id='searchResult']"
 _xpath_amount_of_pages = ".//div[@align='center']"

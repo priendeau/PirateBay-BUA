@@ -1,67 +1,25 @@
 Metadata-Version: 1.0
 Name: PirateBayBUA
-Version: 0.0.1-apha-netcy
-Summary: A python interface to thepiratebay dot org. PirateBay Json, Python Query analysis, implemented with Better User Agent and Aparatus in « Software Pirating Analysis » know in detection of malware, virus and Evil intention. 
-Home-page: None
-Author: Maxiste Deams, Patrick Riendeau, Rheault Etccy
-Author-email: rheault.etccy@gmail.com
-License: BSD NEW LICENCE
-Description: 
-==============================================
-Piratebay-BUA, stand for ( Better User Agent )
-==============================================
-  Piratebay is a thepiratebay dot org screenscraper, with it one can easily search for torrents.
-  Order by any column, such as user / seeders / leechers. It is in early stages right now, but more
-  features are being implemented by the day.
-  
-  It Also include a better User-Agent randomize algorithm for entropy testing purposes. And ultimately
-  some major redirection of the content to be an appropriate package for Security and Legislation to 
-  dig inside a content to chunk the information within merely illegal like pure-copy, personal enhancement
-  in software redistribution, and totally illegal like malware and method-prone to collect citizen data
-  for financial purposes.
-  
-  Missing features:
-  ================
-    - easily download a torrent file.
-    - parse the torrent info page.
-      - parse the comments.
-      - the descriptions.
-      - simulating the answer over wide range of browser.
-      - Extracting information in quest of developping baysian rejection filter and 
-       auto-analysis or even increasing amount of category, leaving real legality in
-       pirate boxes...
-    - sphinx documentation.
+Version: 0.0.1r004-apha-chyctu
+Summary: PirateBay Json, Python Query analysis, implemented with Better User Agent and Aparatus in << Software Pirating Analysis >> know in detection of malware, virus and Evil intention.
+Home-page: https://github.com/priendeau/PirateBay-BUA/blob/master/dist/PirateBayBUA-'0.0.1r003-apha-loamcamo'.tar.gz
+Author: 'P.Riendeau: Maxiste Deams <maxistedeams@gmail.com>, Rheault.Etccy <rheault.etccy@gmail.com>'
+Author-email: 'Maxiste Deams < maxistedeams@gmail.com >'
+License: Copyright (c) 2009-2013 << Patrick. Riendeau, Maxiste Deams >>.
+All rights reserved.
 
-Installing
-==========
-  It is using distutils(setup.py), so you can easily install this on most system with no trouble.
-  From the base dir:
-  python setup.py install (you would need root access depending on the system being used(`sudo'))
-  
-  You can download the latest versions released from <<No pypi for the moment, crude develpt and 
-  in correct stuff will cause problem and rejection, but maxistedeams will release it >>
-  or download the development version straight from the mercurial repository hosted by me at:
-  git://github.com/priendeau/PirateBay-BUA.git.
+Redistribution and use in source and binary forms are permitted
+provided that the above copyright notice and this paragraph are
+duplicated in all such forms and that any documentation,
+advertising materials, and other materials related to such
+distribution and use acknowledge that the software was developed
+by the UnderscoreX.  The name of the
+UnderscoreX may not be used to endorse or promote products derived
+from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-Documentation
-=============
-  Is currently lacking, about every method is documented in the source. But future prototype will
-  become move and more verbosis and Final realse will include test-case and a lot of documentation.
-
-
-  
-
-Platform: All, except illegal one.
-Classifier: Development Status :: 4 - Alpha
-Classifier: Intended Audience :: Developers
-Classifier: License :: OSI Approved :: BSD License
-Classifier: Natural Language :: English
-Classifier: Operating System :: OS Independent
-Classifier: Programming Language :: Python
-Classifier: Topic :: Text Processing :: Linguistic
-Classifier: Environment :: Console
-Classifier: Environment :: Web Environment
-Classifier: Intended Audience :: Developers
-Classifier: Operating System :: OS Independent
-Classifier: Topic :: Internet :: WWW/HTTP
-Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Description: PirateBay Json, Python Query analysis, implemented with Better User Agent and Aparatus in << Software Pirating Analysis >> know in detection of malware, virus and Evil intention.
+Keywords: auditing tools,PirateBay.org,PirateBay.sx,PirateBayBUA,fake-agent,lxml,scrapy,api
+Platform: Linux

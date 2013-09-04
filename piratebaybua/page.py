@@ -1,15 +1,17 @@
-# Copyright (c) Alexander Borgerth 2010, Copyright (c) 2005-2010 re-edited by Maxiste Deams, Patrick Riendeau, Rheault Etccy for 
+# Copyright (c) Alexander Borgerth 2010, Copyright (c) 2005-2013 re-edited by Maxiste Deams, Patrick Riendeau, Rheault Etccy for 
 # Upcoming Security audit in Canada.
 # See LICENSE for details.
 
 import operator
 from lxml import html
-from PirateBayBUA.utils import open_url_with_request
-from PirateBayBUA.parser import find_table, process_all_rows, find_number_of_pages
-from PirateBayBUA import exceptions
+from piratebaybua.utils import open_url_with_request
+from piratebaybua.parser import find_table, process_all_rows, find_number_of_pages
+from piratebaybua import exceptions
 
-search_page_url = "http://thepiratebay.org/s/?"
-user_page_url = "http://thepiratebay.org/user/%s"
+url_addr=[ 'thepiratebay.org', 'thepiratebay.sx' ]
+
+search_page_url = "http://{}/s/?"
+user_page_url = "http://{}/user/%s"
 
 order = {
     'name': 1,
@@ -27,7 +29,25 @@ def search_main(term, category=0, page=0, order_by=order["seeders"]):
     """
     form_data = { "q": term, "category": category,
                 "page": page, "orderby": order_by }
-    url = open_url_with_request(search_page_url, form_data=form_data)
+    ### 
+    ### Detect which version of piratebay is working 
+    ### 
+    ###
+    UrlRespond = [ ]
+    for URI in url_addr:
+      URequest = Request( url=search_page_url.format( URI ) )
+      UConnect = urllib2.urlopen( URequest )
+      UrlRespond.append( [URI, UConnect.get_code() ] )
+    IsUriAccess = 0
+    UriName = None 
+    for Uri, UCode in UrlRespond:
+      if UCode == 200 :
+        UriName = Uri
+        IsUriAccess = 1
+    if IsUriAccess == 0 :
+      raise URIExeption( "All URI in url_addr not returning HTTP_CODE: 200" )
+    
+    url = open_url_with_request( search_page_url.format( UriName ), form_data=form_data)
     doc = html.parse(url).getroot()
     return Page(doc, term, category, page, order_by)
 

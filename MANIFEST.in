@@ -1,0 +1,19 @@
+#
+# MANIFEST.in
+#
+# Manifest template for creating the piratebaybua source distribution.
+
+include MANIFEST.in
+include setup.py
+include piratebaybua/license.txt
+include piratebaybua/__init__.py
+include piratebaybua/categories.py
+include piratebaybua/exceptions.py
+include piratebaybua/README.rst
+include piratebaybua/parser.py
+include piratebaybua/page.py
+include piratebaybua/utils.py
+include piratebaybua/test_utils.py
+include setup3.py
+include setup2.py
+
