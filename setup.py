@@ -13,9 +13,9 @@ setup(name='piratebaybua',
       scripts=[],
       website='https://github.com/priendeau/PirateBay-BUA.git',
       url='https://pypi.python.org/pypi/PirateBayBUA',
-      license=open('piratebaybua/license.txt').read(),
+      license=open('license.txt').read(),
       description='PirateBay Json, Python Query analysis, implemented with Better User Agent and Aparatus in << Software Pirating Analysis >> know in detection of malware, virus and Evil intention.',
-      long_description=open('piratebaybua/README.rst').read(),
+      long_description=open('README.rst').read(),
       install_requires=[ "lxml >= 3.1", "fake_useragent == 0.0.4", ],
       )
 

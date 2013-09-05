@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Copyright (c) Alexander Borgerth 2010, Copyright (c) 2005-2010 re-edited by Maxiste Deams, Patrick Riendeau, Rheault Etccy for 
 # Upcoming Security audit in Canada.
 # See LICENSE for details.
@@ -13,8 +16,7 @@ from piratebaybua.exceptions  import UserAgentExceptionError
 class RequestObject( object ):
 
   BrowserName         = None
-  BrowserCall         = None
-  BrowserValue        = None 
+  BrowserAgent        = None 
 
   StrAgentdeTokenize  = None
   VerMin              = None
@@ -75,16 +77,9 @@ class RequestObject( object ):
       raise UserAgentExceptionError( 'Requesting agent type {}'.format( value ) )
     else:
       self.BrowserName = value
-      self.BrowserCall = getattr( self.user_agents , value )
-      #self.Attr['agent']['value']   = getattr( self, self.Attr['agent']['call']  )
-      #self.Attr['agent']['value']  = self.Attr['agent']['call']
+      self.BrowserAgent = getattr( self.user_agents , value )
 
   AgentName = property( GetAgentName , SetAgentName )
-
-  @property 
-  def GetAgent( self ):
-    return self.Attr['agent']['value']
-    
 
   def SetVerRange( self, Value ):
     print "Calling %s" % self.SetVerRange.__name__
@@ -121,14 +116,15 @@ class RequestObject( object ):
   PropertyRange=property( GetVerRange, SetVerRange )
   AgentString=property( GetParseRandomAgentKeyValue , SetParseRandomAgentKeyValue )
         
-  def __init__(self):
+  def __init__( self ):
     pass
   
-  def get_random_user_agent(self):
+  def get_random_user_agent( self ):
     """Create a random user-agent string."""
-    pass
+    self.AgentName = choice( self.GetBrowserType )
+    return self.BrowserAgent
     
-  def __call__(self, url, form_data=None, get_request=True):
+  def __call__( self, url, form_data=None, get_request=True):
     """Create an urllib2.Request object.
     
     A smart method, creates a GET request if get_request is True
@@ -157,6 +153,6 @@ def download_file(url, location=getcwd()):
     with open(local_file, "w") as f:
       f.write(remote_file.read())
 
-if __name__.__eq__( '__main__' ):
-  Areq=RequestObject()
-  Areq.get_random_user_agent()
+#if __name__.__eq__( '__main__' ):
+#  Areq=RequestObject()
+#  Areq.get_random_user_agent()
