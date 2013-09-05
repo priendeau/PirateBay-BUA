@@ -2,9 +2,9 @@
 Piratebay-BUA, 
 ==============
 
-	-------------------------------
-	stand for ( Better User Agent )
-	-------------------------------
+-------------------------------
+Stand for ( Better User Agent )
+-------------------------------
 
 	Piratebay is a thepiratebay dot org screenscraper, with it one can easily search for torrents.
 	Order by any column, such as user / seeders / leechers. It is in early stages right now, but more
